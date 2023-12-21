@@ -33,12 +33,13 @@ async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
-        // Send a ping to confirm a successful connection
+        // Send a ping to confirm a successful connection / connect হয়েছে কিনা বুঝার জন্য ping use করা হয়েছে।
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
-        await client.close();
+        // ‍database এর সাথে সব সময় connect রাখার জন্য client.close() রাখা যাবে না। তাহলে database connect হয়ে আবার close হয়ে যাবে।
+        // await client.close();
     }
 }
 run().catch(console.dir);
@@ -52,7 +53,7 @@ run().catch(console.dir);
     app().catch(error => console.log(error)) //async function .catch kore error dhora jay
 
     try{
-        // এখানে কোনো কিছু থাকলে এবং সঠিক হরে finally তে যাবে এবং error থাকলে catch এ যাবে।
+        // এখানে কোনো কিছু থাকলে এবং সঠিক হরে finally তে যাবে এবং error থাকলে catch এ যাবে। try এর সাথে catch or finally যেকোনো একটা use করলে হয়।
     }
     catch{
         //error ধরবে

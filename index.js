@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -17,8 +18,7 @@ app.use(express.json())
 
 //mongodb config. 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://shahinaisbd:<password>@cluster0.throxid.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://shahinaisbd:rxQAAZbUz4e2slnn@cluster0.throxid.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -43,6 +43,24 @@ async function run() {
 }
 run().catch(console.dir);
 
+// async, try, catch, finally understanding 
+
+/* 
+    async function app(){
+        //await in the middle
+    }
+    app().catch(error => console.log(error)) //async function .catch kore error dhora jay
+
+    try{
+        // এখানে কোনো কিছু থাকলে এবং সঠিক হরে finally তে যাবে এবং error থাকলে catch এ যাবে।
+    }
+    catch{
+        //error ধরবে
+    }
+    finally{
+        // process শেষে কি হবে। তা ডিফাইন করতে হবে।
+    }
+*/
 
 app.get('/', (req, res) => {
     res.send('Simple CRUD server is running')

@@ -33,6 +33,21 @@ async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
+        // Connect to the "usersDB" database and access its "users" collection
+        // userDB data base এর সাথে connect করা এবং users নামের collection এ data পাঠানো জন্য ব্যবহার করা হয়েছে।
+        const database = client.db("usersDB");
+        const usersCollection = database.collection("users");
+
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            console.log('new user', user)
+
+            // Insert the defined document into the "usersCollection" collection
+            const result = await usersCollection.insertOne(user);
+
+            res.send(result);
+        })
+
         // Send a ping to confirm a successful connection / connect হয়েছে কিনা বুঝার জন্য ping use করা হয়েছে।
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");

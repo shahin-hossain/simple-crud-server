@@ -35,15 +35,25 @@ async function run() {
         await client.connect();
         // Connect to the "usersDB" database and access its "users" collection
         // userDB data base এর সাথে connect করা এবং users নামের collection এ data পাঠানো জন্য ব্যবহার করা হয়েছে।
-        const database = client.db("usersDB");
-        const usersCollection = database.collection("users");
+        /* const database = client.db("usersDB");
+        const usersCollection = database.collection("users"); */
+        const userCollection = client.db("usersDB").collection("users");
 
+        //get data
+        app.get('/users', async (req, res) => {
+            const cursor = userCollection.find(); // database থেকে data গুলোকে আনার জন্য।
+            const results = await cursor.toArray(); // যে data আসবে তার জন্য await করে array এর মধ্যে রাখতে হবে।
+
+            res.send(results)
+        })
+        //carate/post data
         app.post('/users', async (req, res) => {
             const user = req.body;
             console.log('new user', user)
 
             // Insert the defined document into the "usersCollection" collection
-            const result = await usersCollection.insertOne(user);
+            // const result = await usersCollection.insertOne(user);
+            const result = await userCollection.insertOne(user);
 
             res.send(result);
         })

@@ -78,6 +78,24 @@
  * ----------
  * UPDATE
  * ----------
+ * create add.put('/user/:id', async(req,res)) => {})
+ * need unique id &  get user of this id.
+ * create filter = {_id: new ObjectId(id)} for DB update
+ * and crate options = {upsert: true}
+ * which things I will update of the user
+ * const updatedUser = {$set: {name: user.name, email: user.email}}
+ * send to DB collection of Specific data for Update
+ * const result = await collectionUser.updateOne(updatedUser)
+ * and send to client res.send(result);
+ * 
+ * client: 
+ * crate a component & set dynamic route
+ * fetch specific user id wise 
+ * crate a form depend of user information,
+ * handle update user function 
+ * send id wise data to server 
+ * option method: 'PUT', header: 'content-type': 'application/json', body: JSON.stringify(updatedUser)
+ * 
  * 
  * 
  * 

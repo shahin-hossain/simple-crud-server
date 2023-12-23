@@ -71,9 +71,15 @@
  * create dynamic url with id
  * mention the DELETE method
  * 
- * user delete from UI
+ * User delete from UI
  * crate a state & initial state is loaded users
  * user filter with id & remaining users set to users State
  *  
+ * ----------
+ * UPDATE
+ * ----------
+ * 
+ * 
+ * 
  *  */
 

@@ -15,7 +15,9 @@
  * 
  * fetch data from main.jsx -> <Users/> and show UI
  * 
- * 
+ * -----Delete Data---------
+ * add delete button
+ * server to database delete operation
  * 
  *
  */
